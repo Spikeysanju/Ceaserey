@@ -1,22 +1,12 @@
 package www.sanju.ceaserey;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import javax.crypto.Cipher;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,13 +26,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        encrpyt = (Button) findViewById(R.id.button7);
-        decrypt = (Button) findViewById(R.id.button8);
-        myOutput = (TextView) findViewById(R.id.textView7);
+        encrpyt = findViewById(R.id.button7);
+        decrypt = findViewById(R.id.button8);
+        myOutput = findViewById(R.id.textView7);
 
-        message = (EditText) findViewById(R.id.messageED);
-        cipher = (EditText) findViewById(R.id.cipherED);
-        key = (EditText) findViewById(R.id.keyED);
+        message = findViewById(R.id.messageED);
+        cipher = findViewById(R.id.cipherED);
+        key = findViewById(R.id.keyED);
 
 
         encrpyt.setOnClickListener(new View.OnClickListener() {
@@ -57,13 +47,25 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                // decryptt(cipher.getText().toString(), Integer.parseInt(key.getText().toString()));
-                decryptt(encryptt(myOutput.getText().toString(), Integer.parseInt(key.getText().toString())), Integer.parseInt(key.getText().toString()));
+//                decryptt(encryptt(myOutput.getText().toString(), Integer.parseInt(key.getText().toString())),
+//                        Integer.parseInt(key.getText().toString()));
+
+                decode(cipher.getText().toString(), Integer.parseInt(key.getText().toString()));
             }
         });
 
 
     }
 
+    public void decode(String cipher, int key) {
+
+
+        myOutput.setText(Utility.decrypt(cipher, key).toLowerCase());
+
+        //return encryptt(enc, 26-offset);
+
+
+    }
 
 
     public String encryptt(String message, int shiftKey)
